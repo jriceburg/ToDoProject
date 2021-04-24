@@ -1,0 +1,31 @@
+body{
+    background-color: #fafafa;
+    justify-content: center;
+}
+
+.time{
+    size: .7rem;
+    color: gray;
+}
+
+.task{
+    border: silver solid 1px;
+    border-radius: 0.25rem;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+.pill{
+    color: #fe6993;
+    background-color: rgba(254,105,147,0.1);
+    border-radius: 3px;
+    padding: 0.2em;
+    line-height: 2em;
+}
+
+.completed-task{
+    background-color: #eeeeee;
+
+
+}

@@ -1,0 +1,57 @@
+{% extends 'TodoList/base.html' %}
+{% load static %}
+{% block title %}
+    To-do-list
+{% endblock %}
+
+{% block body %}
+
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8">
+            <h1 class="display-4 text-center">TO-DO-LIST</h1>
+            <form action="{% url 'todo_add' %}" method="post">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Add Tasks" name="task_item_db" maxlength="200"
+                           required id="id_task_item_db">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">ADD</button>
+                    </div>
+                </div>
+            </form>
+            {% for todo in todo_DB %}
+                {% if todo.completed == True %}
+                    <div class="row task" style="background-color: #eeeeee; color: gray;">
+                        <div class="col-md-6 " style="text-decoration: line-through;">
+                            <p class="font-weight-bold">{{ todo.task_item_db }}</p>
+                            <p class="time">Created at: {{ todo.created_at }}</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{% url 'todo_complete' todo.id %}"
+                               class="btn btn-success invisible">Completed2</a>
+                            <a href="{% url 'todo_update' todo.id %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="row task">
+                        <div class="col-md-6 ">
+                            <p class="font-weight-bold">{{ todo.task_item_db }}</p>
+                            <p class="time">Created at: {{ todo.created_at }}</p>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{% url 'todo_complete' todo.id %}" class="btn btn-success">Completed</a>
+                            <a href="{% url 'todo_update' todo.id %}" class="btn btn-primary">Update</a>
+                            <a href="{% url 'todo_delete' todo.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

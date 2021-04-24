@@ -1,0 +1,43 @@
+{% extends 'TodoList/base.html' %}
+{% load static %}
+{% block title %}
+    To-do-list
+{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-md-center">
+        <div class="col-lg-8">
+            <h1 class="display-4 text-center">TO-DO-LIST</h1>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <div class="card">
+                    <h5 class="card-header">Update Task</h5>
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-9">
+                                <h5 class="card-title">Task</h5>
+                                <div class="input-group mb-3">
+                                    {{ form.task_item_db }}
+                                </div>
+                            </div>
+                            <div class="col-3 text-center">
+                                <h5 class="card-title">{{ form.completed.label }}</h5>
+                                <div class="form-check">
+                                    {{ form.completed }}
+                                </div>
+
+                            </div>
+                        </div>
+                        <a href="{% url 'todo_index' %}" class="btn btn-info">
+                            <i class="fas fa-arrow-left"></i> Go back
+                        </a>
+                        <button type="submit" class="btn btn-primary" value="update">Update</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
